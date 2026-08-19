@@ -18,7 +18,7 @@ def listar_turma(alunos):
     print()
 
 def menu():
-    alunos = []
+    alunos = Storage.carregar(ARQUIVO_CSV)
 
     while True:
         print("\n--- Menu de Notas ---")
@@ -34,6 +34,7 @@ def menu():
             nome = input("Nome: ").strip()
             aluno = Aluno(matricula, nome)
             alunos.append(aluno)
+            Storage.salvar(alunos, ARQUIVO_CSV)
             print(f"Aluno {nome} cadastrado com matrícula {matricula}.")
 
         elif opcao == "2":
@@ -54,6 +55,7 @@ def menu():
                 n2 = float(input("Nota 2: "))
                 n3 = float(input("Nota 3: "))
                 LancamentoNotas(aluno).lançar(n1, n2, n3)
+                Storage.salvar(alunos, ARQUIVO_CSV)
                 print(f"Avaliações lançadas para {aluno.nome}.")
             except ValueError:
                 print("Entrada inválida.")
@@ -80,6 +82,7 @@ def menu():
                     print("Índice inválido.")
                     continue
                 removido = alunos.pop(i)
+                Storage.salvar(alunos, ARQUIVO_CSV)
                 print(f"Aluno {removido.nome} removido.")
             except ValueError:
                 print("Entrada inválida.")

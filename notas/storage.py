@@ -7,13 +7,12 @@ from .classificacao import classificar
 class Storage:
     @staticmethod
     def salvar(alunos: list[Aluno], caminho: str):
-        arquivo_existe = os.path.exists(caminho) and os.path.getsize(caminho) > 0
-
-        with open(caminho, "a", newline="", encoding="utf-8") as f:
+        with open(caminho, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            if not arquivo_existe:
-                writer.writerow(["matricula", "nome", "n1", "n2", "n3", "media", "status"])
+            writer.writerow(["matricula", "nome", "n1", "n2", "n3", "media", "status"])
             for aluno in alunos:
+                if len(aluno.notas) != 3:
+                    continue
                 media = aluno.media_ponderada()
                 status = classificar(aluno)
                 writer.writerow([aluno.matricula, aluno.nome, *aluno.notas, media, status])
