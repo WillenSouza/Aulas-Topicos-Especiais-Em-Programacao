@@ -15,14 +15,14 @@ Um sistema de linha de comando para gerenciamento de notas de alunos em uma disc
 
 ```
 notas/
-  __init__.py   - exports das classes
-  aluno.py      - classe Aluno (matrícula, nome, notas)
-  lancamento.py - lançamento de 3 notas por aluno
-  classificao.py - classificação (Aprovado/Exame/Reprovado)
-  storage.py    - leitura/escrita CSV
-  cli.py        - interface de menu
-tests/          - testes pytest
-__main__.py     - entrada para python -m notas
+  __init__.py       - exports das classes
+  aluno.py          - classe Aluno (matrícula, nome, notas)
+  lancamento.py     - lançamento de 3 notas por aluno
+  classificacao.py  - classificação (Aprovado/Exame/Reprovado)
+  storage.py        - leitura/escrita CSV
+  cli.py            - interface de menu
+  __main__.py       - entrada para python -m notas
+tests/              - testes pytest
 ```
 
 ## Uso completo
@@ -37,7 +37,11 @@ Menu interativo:
 1. **Cadastrar aluno** - digite matrícula e nome
 2. **Lançar avaliações** - selecione um aluno e digite as 3 notas
 3. **Listar turma** - vê a tabela com matrícula, notas, média e status
-4. **Sair** - encerra o programa
+4. **Remover aluno** - selecione um aluno da lista para remover
+5. **Sair** - encerra o programa
+
+Cada cadastro, lançamento de notas ou remoção salva automaticamente em
+`notas.csv` — os dados persistem entre execuções.
 
 ### Via código Python
 
@@ -69,5 +73,5 @@ alunos = Storage.carregar("notas.csv")
 ## Testes
 
 ```bash
-pytest -q  # 13 testes passando
+pytest -q  # 18 testes passando
 ```

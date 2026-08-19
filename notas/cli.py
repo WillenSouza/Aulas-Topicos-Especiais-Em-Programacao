@@ -7,7 +7,8 @@ from .storage import Storage
 
 ARQUIVO_CSV = "notas.csv"
 
-def listar_turma(alunos):
+def listar_turma(alunos: list[Aluno]) -> None:
+    """Imprime a turma em formato de tabela, com média e status de cada aluno."""
     print("\n--- Turma ---")
     print(f"{'Matrícula':<15} {'Nome':<20} {'N1':<5} {'N2':<5} {'N3':<5} {'Média':<7} {'Status':<10}")
     print("-" * 65)
@@ -17,7 +18,8 @@ def listar_turma(alunos):
         print(f"{aluno.matricula:<15} {aluno.nome:<20} {aluno.notas[0]:<5} {aluno.notas[1]:<5} {aluno.notas[2]:<5} {media:<7.2f} {status:<10}")
     print()
 
-def menu():
+def menu() -> None:
+    """Loop principal do CLI: carrega os alunos já salvos e trata cada opção do menu."""
     alunos = Storage.carregar(ARQUIVO_CSV)
 
     while True:
