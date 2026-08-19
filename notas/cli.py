@@ -25,7 +25,8 @@ def menu():
         print("1. Cadastrar aluno")
         print("2. Lançar avaliações")
         print("3. Listar turma")
-        print("4. Sair")
+        print("4. Remover aluno")
+        print("5. Sair")
         opcao = input("Escolha: ").strip()
 
         if opcao == "1":
@@ -66,6 +67,24 @@ def menu():
             listar_turma(alunos_carregados)
 
         elif opcao == "4":
+            if not alunos:
+                print("Nenhum aluno cadastrado.")
+                continue
+            print("Alunos disponíveis:")
+            for i, a in enumerate(alunos, 1):
+                print(f"{i}. {a.nome} (matrícula: {a.matricula})")
+            idx = input("Selecionar aluno para remover (número): ").strip()
+            try:
+                i = int(idx) - 1
+                if i < 0 or i >= len(alunos):
+                    print("Índice inválido.")
+                    continue
+                removido = alunos.pop(i)
+                print(f"Aluno {removido.nome} removido.")
+            except ValueError:
+                print("Entrada inválida.")
+
+        elif opcao == "5":
             print("Até mais!")
             sys.exit(0)
 
