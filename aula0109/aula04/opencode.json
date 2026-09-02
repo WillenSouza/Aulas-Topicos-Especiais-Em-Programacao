@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "diario": {
+      "type": "local",
+      "command": [".venv/bin/python", "servidor.py"],
+      "cwd": "/home/nati_estagio/Documents/aulas_Benevid/01-092026/aula04",
+      "enabled": true
+    }
+  }
+}
